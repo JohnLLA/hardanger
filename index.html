@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="no">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0053)file:///Users/johningejohansen/Downloads/index_1.html -->
+<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hard Anger – liv og død for brosma</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="./index_files/css2" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --fjord-deep:   #04111f;
-      --fjord-mid:    #0a2a4a;
-      --fjord-light:  #0e3d6a;
-      --accent-blue:  #4a9edd;
-      --accent-gold:  #e8c44a;
-      --text-primary: #d4e8f5;
-      --text-muted:   #7aadcc;
-      --danger:       #c93a3a;
+      --fjord-deep:  #04111f;
+      --fjord-mid:   #0a2a4a;
+      --accent-blue: #4a9edd;
+      --accent-gold: #e8c44a;
+      --text:        #d4e8f5;
+      --muted:       #7aadcc;
+      --danger:      #c93a3a;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--fjord-deep);
-      color: var(--text-primary);
+      color: var(--text);
       font-family: 'Source Serif 4', Georgia, serif;
       font-weight: 300;
       line-height: 1.75;
@@ -32,13 +31,13 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 3rem 1.5rem;
+      padding: 2rem 1.5rem 6rem;
       overflow: hidden;
     }
 
@@ -46,95 +45,126 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 110%, rgba(10,42,74,0.9) 0%, transparent 70%),
-        linear-gradient(180deg, #04111f 0%, #081828 40%, #0a2035 100%);
+      background: linear-gradient(180deg, #04111f 0%, #081828 50%, #0a2035 100%);
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    /* animated water lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 38px,
+        rgba(74,158,221,0.04) 38px,
+        rgba(74,158,221,0.04) 40px
+      );
+      animation: drift 12s linear infinite;
+    }
+    @keyframes drift { from{background-position:0 0} to{background-position:0 80px} }
+
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
 
     .pixel-title {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(1.8rem, 6vw, 3.6rem);
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
+      font-size: clamp(2rem, 7vw, 4rem);
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
     }
-    .pixel-title .hard { color: #c0d8e8; }
-    .pixel-title .anger { color: var(--danger); }
+    .hard  { color: #c0d8e8; }
+    .anger { color: var(--danger); }
 
     .hero-sub {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(0.55rem, 1.5vw, 0.75rem);
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-      margin-bottom: 2.5rem;
+      font-size: clamp(0.5rem, 1.4vw, 0.7rem);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
     }
 
     .cta-btn {
       display: inline-block;
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+      font-size: clamp(0.55rem, 1.4vw, 0.72rem);
       color: var(--fjord-deep);
       background: var(--accent-gold);
-      padding: 0.9rem 2rem;
+      padding: 1rem 2.2rem;
       text-decoration: none;
       border-radius: 2px;
-      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.04em;
+      transition: background 0.18s, transform 0.12s;
+      box-shadow: 0 4px 24px rgba(232,196,74,0.25);
     }
-    .cta-btn:hover { background: #f0d060; transform: translateY(-2px); }
+    .cta-btn:hover { background: #f5d858; transform: translateY(-2px); }
 
-    .scroll-hint {
+    /* scroll invitation — bottom of hero */
+    .scroll-invite {
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 1.8rem;
+      z-index: 1;
+      gap: 0.5rem;
+    }
+    .scroll-invite span {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.5rem;
-      color: var(--text-muted);
-      opacity: 0.6;
-      animation: bob 2s ease-in-out infinite;
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      opacity: 0.75;
     }
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
-
-    /* ── MAIN CONTENT ── */
-    main {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 1.5rem 6rem;
+    .scroll-arrow {
+      width: 22px;
+      height: 22px;
+      border-right: 2px solid var(--accent-blue);
+      border-bottom: 2px solid var(--accent-blue);
+      transform: rotate(45deg);
+      opacity: 0.5;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+    .scroll-arrow:nth-child(3) { animation-delay: 0.2s; opacity: 0.3; }
+    @keyframes bounce {
+      0%,100%{ transform: rotate(45deg) translateY(0); }
+      50%    { transform: rotate(45deg) translateY(5px); }
     }
 
-    section { padding: 4rem 0 2rem; }
-    section + section { border-top: 1px solid rgba(74,158,221,0.12); }
+    /* ── CONTENT ── */
+    main { max-width: 760px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    section { padding: 4.5rem 0 2rem; }
+    section + section { border-top: 1px solid rgba(74,158,221,0.1); }
 
     h2 {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(0.7rem, 2vw, 0.95rem);
+      font-size: clamp(0.65rem, 1.8vw, 0.9rem);
       color: var(--accent-blue);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.6rem;
     }
 
     p { margin-bottom: 1.2rem; font-size: 1.05rem; }
     p:last-child { margin-bottom: 0; }
 
-    /* pull-quote */
     blockquote {
       border-left: 3px solid var(--accent-blue);
       margin: 2rem 0;
-      padding: 0.8rem 1.4rem;
+      padding: 0.9rem 1.4rem;
       background: rgba(10,42,74,0.4);
       border-radius: 0 4px 4px 0;
       font-style: italic;
-      color: var(--text-muted);
-      font-size: 1rem;
+      color: var(--muted);
+      font-size: 0.98rem;
     }
 
-    /* stat boxes */
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
       gap: 1rem;
       margin: 2rem 0;
     }
@@ -142,51 +172,42 @@
       background: rgba(10,42,74,0.5);
       border: 1px solid rgba(74,158,221,0.18);
       border-radius: 4px;
-      padding: 1.2rem 1rem;
+      padding: 1.3rem 1rem;
       text-align: center;
     }
     .stat-num {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-size: clamp(0.95rem, 2.5vw, 1.3rem);
       color: var(--accent-gold);
       display: block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
 
-    /* threat cards */
     .threats { display: grid; gap: 1rem; margin: 2rem 0; }
     .threat-card {
       background: rgba(10,42,74,0.4);
-      border: 1px solid rgba(74,158,221,0.15);
+      border: 1px solid rgba(74,158,221,0.14);
       border-radius: 4px;
       padding: 1.2rem 1.4rem;
       display: grid;
-      grid-template-columns: 2.5rem 1fr;
+      grid-template-columns: 2.4rem 1fr;
       gap: 0 1rem;
       align-items: start;
     }
-    .threat-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-      padding-top: 0.1rem;
-    }
+    .threat-icon { font-size: 1.4rem; padding-top: 0.1rem; }
     .threat-title {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: var(--accent-blue);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.04em;
     }
-    .threat-body { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .threat-body { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
-    /* source link */
     .source {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--muted);
       margin-top: 2.5rem;
       padding-top: 1.2rem;
       border-top: 1px solid rgba(74,158,221,0.1);
@@ -194,14 +215,53 @@
     .source a { color: var(--accent-blue); text-decoration: none; }
     .source a:hover { text-decoration: underline; }
 
-    /* footer */
-    footer {
+    /* ── PLAY SECTION ── */
+    .play-section {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 5rem 0 3rem;
+    }
+    .play-section p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── DEV FOOTER ── */
+    .dev-zone {
+      border-top: 1px solid rgba(74,158,221,0.08);
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .dev-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      color: rgba(122,173,204,0.3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .dev-btn {
+      display: inline-block;
       font-family: 'Press Start 2P', monospace;
       font-size: 0.5rem;
       color: rgba(122,173,204,0.4);
-      border-top: 1px solid rgba(74,158,221,0.08);
+      border: 1px solid rgba(74,158,221,0.15);
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .dev-btn:hover { color: var(--muted); border-color: rgba(74,158,221,0.4); }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      color: rgba(122,173,204,0.25);
     }
   </style>
 </head>
@@ -210,12 +270,17 @@
   <header class="hero">
     <div class="hero-content">
       <h1 class="pixel-title">
-        <span class="hard">HARD</span>&nbsp;<span class="anger">ANGER</span>
+        <span class="hard">HARD</span> <span class="anger">ANGER</span>
       </h1>
       <p class="hero-sub">liv og død for brosma</p>
-      <a href="spill.html" class="cta-btn">▶ &nbsp;SPILL NÅ</a>
+      <a href="file:///Users/johningejohansen/Downloads/spill.html" class="cta-btn">▶ &nbsp;SPILL NÅ</a>
     </div>
-    <span class="scroll-hint">▼ &nbsp;les mer</span>
+
+    <div class="scroll-invite">
+      <span>skroll for å lese mer</span>
+      <div class="scroll-arrow"></div>
+      <div class="scroll-arrow"></div>
+    </div>
   </header>
 
   <main>
@@ -223,12 +288,12 @@
     <section>
       <h2>Hardangerfjorden under press</h2>
       <p>
-        Hardangerfjorden er Norges nest lengste fjord og strekker seg om lag 170 kilometer inn i landet. 
+        Hardangerfjorden er Norges nest lengste fjord og strekker seg om lag 170 kilometer inn i landet.
         Den er blant de mest produktive marine habitatene vi har — og en av de mest belastede.
       </p>
       <p>
-        I november 2025 publiserte Havforskningsinstituttet rapporten <em>«Hardangerfjorden under press: Utslipp og miljøtilstand»</em>, 
-        bestilt av Miljødirektoratet etter at Statsforvalteren i Vestland varslet om fallende oksygennivåer i bunnvannet og økt planteplanktonproduksjon. 
+        I november 2025 publiserte Havforskningsinstituttet rapporten <em>«Hardangerfjorden under press: Utslipp og miljøtilstand»</em>,
+        bestilt av Miljødirektoratet etter at Statsforvalteren i Vestland varslet om fallende oksygennivåer i bunnvannet og økt planteplanktonproduksjon.
         Bakgrunnen var en voksende bekymring for hva oppdrettsnæringens ekspansjon gjør med selve fjorden.
       </p>
 
@@ -248,16 +313,16 @@
       </div>
 
       <blockquote>
-        Nedgang i oksygennivåer i bunnvannet og økt planteplanktonproduksjon 
+        Nedgang i oksygennivåer i bunnvannet og økt planteplanktonproduksjon
         samsvarer med økte tilførsler av nitrogen fra oppdrettsanlegg.
-        — Statsforvalteren i Vestland, 2025
+        <br>— Statsforvalteren i Vestland, 2025
       </blockquote>
     </section>
 
     <section>
       <h2>Fire trusler — ett spill</h2>
       <p>
-        I <em>Hard Anger</em> svømmer du som brosma gjennom de fire truslene rapporten peker på. 
+        I <em>Hard Anger</em> svømmer du som brosma gjennom de fire truslene rapporten peker på.
         Hvert stadium er basert på dokumenterte miljøutfordringer i fjorden.
       </p>
 
@@ -267,7 +332,7 @@
           <div>
             <div class="threat-title">Stadium 1 — Lakselus</div>
             <div class="threat-body">
-              Hardangerfjorden har høyt smittepress fra lakselus. I 2025 ble det observert «mye lakselus på utvandrende postsmolt» med forventet høy negativ effekt på vill laksefisk. Lusene forfølger deg gjennom grotten.
+              Hardangerfjorden er blant fjordene med høyest smittepress fra lakselus i Norge. I 2025 ble det observert mye lus på utvandrende postsmolt, med forventet høy negativ effekt på vill laksefisk. I spillet forfølger lusene deg gjennom grotten.
             </div>
           </div>
         </div>
@@ -277,7 +342,7 @@
           <div>
             <div class="threat-title">Stadium 2 — Laksemerder og ferskvann</div>
             <div class="threat-body">
-              Oppdrettsanleggene slipper ut nitrogen, fosfor og fôrrester. Kraftverk tilfører ferskvann som endrer saltinnholdet og fortrenger marin fisk. I dag har alle nye akvakultursøknader i Hardangerfjorden stått på vent siden 2023.
+              Oppdrettsanleggene slipper ut nitrogen, fosfor og fôrrester som endrer fjordens kjemi. Kraftverk tilfører ferskvann som senker saltinnholdet og fortrenger marin fisk. Alle nye akvakultursøknader i Hardangerfjorden har stått på vent siden 2023.
             </div>
           </div>
         </div>
@@ -287,7 +352,7 @@
           <div>
             <div class="threat-title">Stadium 3 — Maneter</div>
             <div class="threat-body">
-              Fallende oksygennivåer i bunnvannet — ned mot klassegrensen for «moderat miljøtilstand» — gjør fjorden levelig for maneter og lite levelig for dypvannsfisk som brosma. Manetene kan ikke skytes ned. De kan bare unngås.
+              Oksygennivåene i bunnvannet nærmer seg grensen for «moderat miljøtilstand». Når det blir lite oksygen i vannet blir det mørkere og lite levelig for fisk. Manetene overtar. I spillet kan de ikke skytes ned — de kan bare unngås.
             </div>
           </div>
         </div>
@@ -297,34 +362,33 @@
           <div>
             <div class="threat-title">Stadium 4 — Tungmetaller og bly</div>
             <div class="threat-body">
-              Kobber, sink, kadmium og bly fra laksefôr og historisk industri har skapt dårlig kjemisk tilstand i indre deler av fjorden. Rapporten peker særlig på miljøgifters effekt på tidlige livsstadier hos marine organismer.
+              Kobber, sink, kadmium og bly fra laksefôr og historiske industriutslipp har skapt dårlig kjemisk tilstand i indre deler av fjorden. Rapporten peker særlig på miljøgifters effekt på tidlige livsstadier hos marine organismer.
             </div>
           </div>
         </div>
       </div>
 
       <div class="source">
-        Kilder: Havforskningsinstituttet, <em>Hardangerfjorden under press</em> (2025) · 
-        <a href="https://www.nrk.no/vestland/ny-rapport_-hardangerfjorden-under-press-1.17620267" target="_blank" rel="noopener">NRK Vestland</a> · 
+        Kilder: Havforskningsinstituttet, <em>Hardangerfjorden under press</em> (2025) ·
+        <a href="https://www.nrk.no/vestland/ny-rapport_-hardangerfjorden-under-press-1.17620267" target="_blank" rel="noopener">NRK Vestland</a> ·
         <a href="https://www.miljodirektoratet.no/aktuelt/fagmeldinger/2025/november-2025/hardangerfjorden-under-press/" target="_blank" rel="noopener">Miljødirektoratet</a>
       </div>
     </section>
 
-    <section>
-      <h2>Spill nå</h2>
-      <p>
-        Klarer du å svømme gjennom alle fire stadier og nå bunnen av fjorden?
-      </p>
-      <p style="margin-top:1.5rem;">
-        <a href="spill.html" class="cta-btn">▶ &nbsp;START SPILLET</a>
-      </p>
-    </section>
-
   </main>
 
-  <footer>
-    Hard Anger &nbsp;·&nbsp; Et journalistisk spill om Hardangerfjorden
-  </footer>
+  <div class="play-section">
+    <p>Klarer du å svømme gjennom alle fire stadier og nå bunnen av fjorden?</p>
+    <a href="file:///Users/johningejohansen/Downloads/spill.html" class="cta-btn">▶ &nbsp;START SPILLET</a>
+  </div>
 
-</body>
-</html>
+  <div class="dev-zone">
+    <p class="dev-label">intern testversjon</p>
+    <a href="file:///Users/johningejohansen/Downloads/dev.html" class="dev-btn">⚙ utviklerversjon</a>
+  </div>
+
+  <footer>Hard Anger · Et journalistisk spill om Hardangerfjorden</footer>
+
+
+
+</body></html>
